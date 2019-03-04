@@ -38,7 +38,7 @@
       }
     },
     computed: {
-      companies() { return this.$store.state.companies }
+      companies() { return this.$store.get('companies@companies') }
     },
     components: {
       CompanyDetails,

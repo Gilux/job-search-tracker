@@ -5,7 +5,7 @@
               <div class="main-infos">
                 <h2>{{ model.job_name }}</h2>
                 <p class="company">{{ model.company_name }}</p>
-                <div class="status open">{{ model.status }}</div>
+                <div class="status" :class="model.status">{{ model.status }}</div>
               </div>
             </header>
             <div class="body">
@@ -36,6 +36,9 @@
                 </li>
               
               </ul>
+              <div>
+                {{ model.personal_notes }}
+              </div>
             </div>
             <footer>
               <a href="#" class="btn darknavy" @click.prevent="moreDetails(model.id)">More details</a>

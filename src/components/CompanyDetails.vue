@@ -7,7 +7,16 @@
           <div class="main-infos">
             <h2>{{ company.job_name }}</h2>
             <p class="company">{{ company.company_name }}</p>
-            <a href="#"><div class="status open">Open</div></a>
+            <a href="#" class="status-dropdown-container">
+              <div class="status" :class="company.status" @click="statusDropdownOpened = !statusDropdownOpened">{{ company.status }}</div>
+              <ul class="status-dropdown shadow" v-if="statusDropdownOpened">
+                <li><a href="#" class="status open" @click.prevent="setNewStatus('open')">Open</a></li>
+                <li><a href="#" class="status await" @click.prevent="setNewStatus('await')">Awaiting response</a></li>
+                <li><a href="#" class="status answer" @click.prevent="setNewStatus('answer')">To answer</a></li>
+                <li><a href="#" class="status rejected" @click.prevent="setNewStatus('rejected')">Rejected</a></li>
+                <li><a href="#" class="status success" @click.prevent="setNewStatus('success')">Success</a></li>
+              </ul>
+            </a>
             
           </div>
         </header>
@@ -16,26 +25,19 @@
               <li>
                 PROJECTS
                 <div class="stars">
-                  <img src="@/assets/star.png">
-                  <img src="@/assets/star.png">
-                  <img src="@/assets/star.png">
+                  <img src="@/assets/star.png" :key="i" v-for="i in company.ratings.projects">
                 </div>
               </li>
               <li>
                 SALARY
                 <div class="stars">
-                    <img src="@/assets/star.png">
-                    <img src="@/assets/star.png">
+                  <img src="@/assets/star.png" :key="i" v-for="i in company.ratings.salary">
                 </div>
               </li>
               <li>
                 LOCATION
                 <div class="stars">
-                    <img src="@/assets/star.png">
-                    <img src="@/assets/star.png">
-                    <img src="@/assets/star.png">
-                    <img src="@/assets/star.png">
-                  <img src="@/assets/star.png">
+                  <img src="@/assets/star.png" :key="i" v-for="i in company.ratings.location">
                 </div>
               </li>
             </ul>
@@ -50,12 +52,13 @@
               
               <div class="title-edit">
                 <h3>Remarques</h3>
-                  <div class="section-edit">
+                  <a v-if="!isEditingPersonalNotes" href="" class="section-edit" @click.prevent="togglePersonalNotesEdit(true)">
                     <img src="@/assets/pencil-edit-button.svg" alt="edit">
-                  </div>
-                
+                  </a>
               </div>
-              <p>{{ company.personal_notes }}</p>
+              <p v-if="!isEditingPersonalNotes">{{ company.personal_notes }}</p>
+              <textarea v-if="isEditingPersonalNotes" v-model="tmpPersonalNotes" @keydown.enter.prevent="savePersonalNotes" @keydown.esc.prevent="cancelPersonalNotes" />
+
               </div>
             <div class="history-container">
 
@@ -80,20 +83,42 @@
 <script>
   export default {
     name: "company_single",
+    data() {
+      return {
+        isEditingPersonalNotes: false,
+        statusDropdownOpened: false,
+        tmpPersonalNotes: ""
+      }
+    },
     computed: {
       company() {
         return this.$store.getters.getCompanyById(this.$route.params.id)
       }
     },
     methods: {
-      moreDetails(id) {
-        this.$router.push('/companies/c/' + id)
-      }
+      togglePersonalNotesEdit( state ) {
+        this.isEditingPersonalNotes = state
+
+        if(state === true) {
+          this.tmpPersonalNotes = this.company.personal_notes
+        }
+      },
+      savePersonalNotes() {
+        this.$store.commit("updateCompanyPersonalNotes", {id: this.company.id, newVal: this.tmpPersonalNotes})
+        this.isEditingPersonalNotes = false
+      },
+      cancelPersonalNotes() {
+        this.tmpPersonalNotes = ""
+        this.isEditingPersonalNotes = false
+      },
+      setNewStatus(status) {
+        this.$store.dispatch("updateCompanyStatus", {id: this.company.id, newVal: status})
+      },
     }
   };
 </script>
 
-<style>
+<style lang="scss">
   .application-single {
     width: 100%;
     height: 100%;
@@ -120,4 +145,49 @@
     font-size: 1.2em;
     line-height: 2.2em;
   }
+
+  textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+  }
+
+  .status-dropdown-container {
+    position: relative;
+  }
+
+  ul.status-dropdown {
+    position: absolute;
+    z-index: 100;
+    transform: translateX(-50%);
+    left: 50%;
+
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    margin-top: 5px;
+    padding-bottom: 15px;
+
+    font-size: 1.5rem;
+    border: 1px solid #FAFAFA;
+    background-color: #fff;
+
+    width: 160px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li {
+
+
+      a {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-top: 15px;
+      }
+    }
+  }
+
+  
 </style>

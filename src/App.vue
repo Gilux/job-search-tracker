@@ -68,7 +68,7 @@ a {
 
 .status {
   display: inline-block;
-  padding: 3px 5px;
+  padding: 4px 8px;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 8px;
@@ -76,7 +76,27 @@ a {
 }
 
 .status.open {
-  background-color: #3ce03c;
+  background-color: #687fe6;
+  color: white;
+}
+
+.status.await {
+  background-color: #352d69;
+  color: white;
+}
+
+.status.answer {
+  background-color: #dabf48;
+  color: white;
+}
+
+.status.rejected {
+  background-color: #e62c0b;
+  color: white;
+}
+
+.status.success {
+  background-color: #35cc35;
   color: white;
 }
 
@@ -154,6 +174,7 @@ nav a {
   flex: 1;
   position: relative;
   z-index: 1;
+  overflow: scroll;
 }
 
 h1 {
