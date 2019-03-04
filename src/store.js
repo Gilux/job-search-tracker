@@ -89,7 +89,6 @@ const companiesModule = {
       Vue.set(state, "companies", tmpCompanies)
     },
     addHistoryEntry: (state, payload) => {
-      console.log("addhistory")
       let tmpCompanies = state.companies.slice(0)
 
       tmpCompanies = tmpCompanies.map((c) => {
@@ -105,7 +104,6 @@ const companiesModule = {
 
   actions: {
     updateCompanyStatus(context, payload) {
-      console.log(context)
       context.commit('updateCompanyStatus', payload)
 
       const d = new Date()
