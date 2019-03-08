@@ -22,8 +22,26 @@ export default new Router({
           name: "single_company",
           component: () =>
           import(/* webpackChunkName: "about" */ "./views/Companies.vue"),
+        },
+        {
+          path: "add",
+          name: "add_company",
+          component: () =>
+          import(/* webpackChunkName: "about" */ "./views/Companies.vue"),
         }
       ]
+    },
+    {
+      path: "/technologies",
+      name: "technologies",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Technologies.vue"),
+    },
+    {
+      path: "/fields",
+      name: "fields",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Fields.vue"),
     },
   ]
 });

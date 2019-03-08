@@ -4,15 +4,10 @@
         <CompanyDetails v-if="$route.name == 'single_company'" />
       </transition>
       
-    <nav>
-      <ul>
-          <li><a href="#">My applications</a></li>
-          <li><a href="#">Industry fields</a></li>
-          <li><a href="#">Technologies</a></li>
-      </ul>
-    </nav>
+    <MainMenu />
+    
 
-    <main>
+    <main v-if="$route.name == 'companies'">
       <div id="search">
 
       </div>
@@ -22,13 +17,23 @@
           <CompanyCard v-for="c in companies" :key="c.id" :model="c" />
         </div>
       </div>
+      <a href="#" @click.prevent="onNewCompany" id="add_company">
+        &plus;
+      </a>
     </main>
+
+    <main v-if="$route.name == 'add_company'">
+      <NewCompany />
+    </main>
+
   </section>
 </template>
 
 <script>
   import CompanyDetails from "@/components/CompanyDetails"
   import CompanyCard from "@/components/CompanyCard"
+  import MainMenu from "@/components/MainMenu"
+  import NewCompany from "@/components/NewCompany"
 
   export default {
     name: "companies",
@@ -42,14 +47,45 @@
     },
     components: {
       CompanyDetails,
-      CompanyCard
+      CompanyCard,
+      MainMenu,
+      NewCompany
+    },
+    methods: {
+      onNewCompany() {
+        this.$router.push({ name: 'add_company' })
+      }
     }
   };
 </script>
 
-<style>
+<style lang="scss">
   #dashboard {
     overflow: hidden;
+  }
+
+  main {
+    position: relative;
+  }
+
+  $add_company_size: 60px;
+
+  #add_company {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+
+    width: $add_company_size;
+    height: $add_company_size;
+    line-height: $add_company_size;
+
+    text-align: center;
+
+    background-color: #352D69;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: $add_company_size / 2;
+    border-radius: 100%;
   }
 
   
