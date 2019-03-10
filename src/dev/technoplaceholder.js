@@ -18,8 +18,7 @@ const technoplaceholder = [
     id: 4,
     name: "Laravel",
     logo_url: "#"
-  },
+  }
+];
 
-]
-
-export default technoplaceholder
+export default technoplaceholder;

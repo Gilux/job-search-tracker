@@ -18,8 +18,8 @@
             <tbody>
               <tr v-for="m in model" :key="m.id">
                 <td>{{ m.id }}</td>
-                <td>{{ m.name }}</td>
-                <td>{{ m.logo_url }}</td>
+                <td>{{ m.logo_url }} {{ m.name }}</td>
+                <td>{{ m.companies }}</td>
                 <td>Edit | <a href="#" @click.prevent="onDelete(m.id)">Delete</a></td>
               </tr>
             </tbody>

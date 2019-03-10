@@ -10,10 +10,9 @@ import Company from "@/models/company";
 import Field from "@/models/field";
 import Techno from "@/models/techno";
 
-import companyplaceholder from "@/dev/companyplaceholder"
-import fieldplaceholder from "@/dev/fieldplaceholder"
-import technoplaceholder from "@/dev/technoplaceholder"
-
+import companyplaceholder from "@/dev/companyplaceholder";
+import fieldplaceholder from "@/dev/fieldplaceholder";
+import technoplaceholder from "@/dev/technoplaceholder";
 
 new Vue({
   router,
@@ -24,12 +23,12 @@ new Vue({
 // Fill the store with initial data
 Company.create({
   data: companyplaceholder
-})
+});
 
 Field.create({
   data: fieldplaceholder
-})
+});
 
 Techno.create({
   data: technoplaceholder
-})
+});

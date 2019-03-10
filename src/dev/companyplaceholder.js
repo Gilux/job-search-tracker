@@ -8,7 +8,7 @@ const companyplaceholder = [
     ratings: {
       projects: 3,
       salary: 2,
-      location: 5,
+      location: 5
     },
     history: [
       {
@@ -18,8 +18,12 @@ const companyplaceholder = [
       }
     ],
     personal_notes: "lorem ipsum",
-    location: [],
+    location: {
+      lat: "48.8774137",
+      lon: "2.3299286410804"
+    },
     field_id: 4,
+    technos: [2, 3]
   },
   {
     id: 2,
@@ -30,7 +34,7 @@ const companyplaceholder = [
     ratings: {
       projects: 5,
       salary: 5,
-      location: 1,
+      location: 1
     },
     history: [
       {
@@ -42,13 +46,16 @@ const companyplaceholder = [
         id: "10202034023434",
         date: "2019-02-24",
         action: "CV sent"
-      },
+      }
     ],
     personal_notes: "lorem ipsum",
-    location: [],
+    location: {
+      lat: "48.8774137",
+      lon: "2.3299286410804"
+    },
     field_id: 3,
     field: {}
   }
-]
+];
 
-export default companyplaceholder
+export default companyplaceholder;

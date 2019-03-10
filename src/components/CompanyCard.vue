@@ -1,10 +1,19 @@
 <template>
   <div class="application shadow">
     <header class="application-intro">
-      <img :src="'https://logo.clearbit.com/' + model.logo_url" class="logo" alt="#">
+      <img
+        :src="'https://logo.clearbit.com/' + model.logo_url"
+        class="logo"
+        alt="#"
+      />
       <div class="main-infos">
         <h2>{{ model.job_name }}</h2>
-        <p class="company">{{ model.company_name }} (<i>{{ (model.field) ? model.field.name : "Inconnu" }}</i>)</p>
+        <p class="company">
+          {{ model.company_name }} (<i>{{
+            model.field ? model.field.name : "Inconnu"
+          }}</i
+          >)
+        </p>
         <div class="status" :class="model.status">{{ model.status }}</div>
       </div>
     </header>
@@ -13,19 +22,31 @@
         <li>
           PROJECTS
           <div class="stars">
-            <img src="@/assets/star.png" :key="i" v-for="i in model.ratings.projects">
+            <img
+              src="@/assets/star.png"
+              :key="i"
+              v-for="i in model.ratings.projects"
+            />
           </div>
         </li>
         <li>
           SALARY
           <div class="stars">
-            <img src="@/assets/star.png" :key="i" v-for="i in model.ratings.salary">
+            <img
+              src="@/assets/star.png"
+              :key="i"
+              v-for="i in model.ratings.salary"
+            />
           </div>
         </li>
         <li>
           LOCATION
           <div class="stars">
-            <img src="@/assets/star.png" :key="i" v-for="i in model.ratings.location">
+            <img
+              src="@/assets/star.png"
+              :key="i"
+              v-for="i in model.ratings.location"
+            />
           </div>
         </li>
       </ul>
@@ -34,31 +55,56 @@
           <span class="date">{{ h.date }}</span>
           {{ h.action }}
         </li>
-      
       </ul>
-      <div>
+      <div class="personal_notes">
         {{ model.personal_notes }}
+      </div>
+      <div class="technos">
+        <span v-for="t in model.technos" :key="t.id">{{ t.name }}</span>
       </div>
     </div>
     <footer>
-      <a href="#" class="btn darknavy" @click.prevent="moreDetails(model.id)">More details</a>
+      <a href="#" class="btn darknavy" @click.prevent="moreDetails(model.id)"
+        >More details</a
+      >
     </footer>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "company_card",
-    props: ["model"],
-    methods: {
-      moreDetails(id) {
-        this.$router.push('/companies/c/' + id)
-      }
+export default {
+  name: "company_card",
+  props: ["model"],
+  methods: {
+    moreDetails(id) {
+      this.$router.push("/companies/c/" + id);
     }
-  };
+  }
+};
 </script>
 
+<style lang="scss" scoped>
+.technos,
+.personal_notes {
+  padding: 15px 30px;
+}
 
-<style>
+.technos {
+  span {
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 3px 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
 
+  &:empty {
+    padding: 0;
+  }
+}
 </style>

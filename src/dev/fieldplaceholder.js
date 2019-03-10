@@ -1,21 +1,20 @@
 const fieldplaceholder = [
   {
     id: 1,
-    name: "Bank",
+    name: "Bank"
   },
   {
     id: 2,
-    name: "Public Service",
+    name: "Public Service"
   },
   {
     id: 3,
-    name: "Tech startup",
+    name: "Tech startup"
   },
   {
     id: 4,
-    name: "Gaming",
-  },
+    name: "Gaming"
+  }
+];
 
-]
-
-export default fieldplaceholder
+export default fieldplaceholder;

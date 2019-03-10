@@ -21,13 +21,13 @@ export default new Router({
           path: "c/:id",
           name: "single_company",
           component: () =>
-          import(/* webpackChunkName: "about" */ "./views/Companies.vue"),
+            import(/* webpackChunkName: "about" */ "./views/Companies.vue")
         },
         {
           path: "add",
           name: "add_company",
           component: () =>
-          import(/* webpackChunkName: "about" */ "./views/Companies.vue"),
+            import(/* webpackChunkName: "about" */ "./views/Companies.vue")
         }
       ]
     },
@@ -35,13 +35,13 @@ export default new Router({
       path: "/technologies",
       name: "technologies",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Technologies.vue"),
+        import(/* webpackChunkName: "about" */ "./views/Technologies.vue")
     },
     {
       path: "/fields",
       name: "fields",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Fields.vue"),
-    },
+        import(/* webpackChunkName: "about" */ "./views/Fields.vue")
+    }
   ]
 });

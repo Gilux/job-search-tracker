@@ -5,65 +5,67 @@
 </template>
 
 <style lang="scss">
-*,*:before,*:after {
-    font-family: "Lato", sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+*,
+*:before,
+*:after {
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 [hidden] {
-    display: none !important;
+  display: none !important;
 }
 
-ul, li {
+ul,
+li {
   list-style-type: none;
 }
 
 .darknavy {
-    color: #352D69;
+  color: #352d69;
 }
 
 .lightblue {
-    color: #4DCEFF;
+  color: #4dceff;
 }
 
 .darkgrey {
-    color: #909CA8;
+  color: #909ca8;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
-    
+  color: inherit;
+  text-decoration: none;
 }
 
 .btn {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .btn.darkgrey {
-    background-color: #909CA8;
-    color: white;
+  background-color: #909ca8;
+  color: white;
 }
 
 .btn.darknavy {
-  background-color: #352D69;
+  background-color: #352d69;
   color: white;
 }
 
 .big {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .shadow {
-    box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.06);
+  box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.06);
 }
 
 .status {
@@ -101,43 +103,42 @@ a {
 }
 
 body {
-    background-color: #F9FAFD;
+  background-color: #f9fafd;
 }
 
 #login {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login__box {
-    background-color: #fff;
-    width: 500px;
-    border-radius: 8px;
-    margin: auto;
+  background-color: #fff;
+  width: 500px;
+  border-radius: 8px;
+  margin: auto;
 
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
-.login__box header, .login__box .main, .login__box footer {
-    padding: 15px 30px;
+.login__box header,
+.login__box .main,
+.login__box footer {
+  padding: 15px 30px;
 }
 
 .login__box header {
-    border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #eee;
 }
 
 .login__box .main {
-
 }
 
 .login__box footer {
-
 }
-
 
 #dashboard {
   height: 100vh;
@@ -147,7 +148,7 @@ body {
 }
 
 nav {
-  background-color: #352D69;
+  background-color: #352d69;
   width: 200px;
 
   font-size: 1.5rem;
@@ -196,7 +197,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px;
-  
+
   padding-top: 50px;
 }
 
@@ -225,12 +226,11 @@ h3 {
   border-radius: 100px;
 }
 
-
 .application-single .application-intro {
   font-size: 2em;
 }
 
-.application-single .application-intro  img.logo {
+.application-single .application-intro img.logo {
   width: 80px;
   height: 80px;
 }
@@ -255,7 +255,7 @@ h3 {
 
 .rates li {
   font-weight: 600;
-  color: #909CA8;
+  color: #909ca8;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -263,7 +263,8 @@ h3 {
   font-size: 1.2rem;
 }
 
-.history-container, .self-notes  {
+.history-container,
+.self-notes {
   position: relative;
   padding: 15px 30px;
   border-bottom: 1px solid #ebebeb;
@@ -347,7 +348,6 @@ h3 {
   border-top: 1px solid #ebebeb;
   padding: 15px 30px;
   text-align: center;
-  
 }
 
 .application footer .btn {
@@ -357,10 +357,7 @@ h3 {
   padding: 1rem 2rem;
 }
 
-
-
 .section-edit {
-
 }
 
 .section-edit img {
@@ -405,49 +402,52 @@ $add_button_size: 60px;
 
   text-align: center;
 
-  background-color: #352D69;
-  color: #FFFFFF;
+  background-color: #352d69;
+  color: #ffffff;
   font-weight: 600;
   font-size: $add_button_size / 2;
   border-radius: 100%;
 }
 
 .form-control {
-    margin: 10px 0;
+  margin: 10px 0;
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.2rem;
-    }
-
-    input, textarea, select, option {
-      display: block;
-      width: 100%;
-      padding: 5px 10px;
-      border: 1px solid #EEEEEE;
-      outline: none;
-
-      &:focus {
-        border-color: #AAAAAA;
-      }
-    } 
-  }
-  
-  [type="submit"] {
-    border: none;
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
   }
 
-  table {
+  input,
+  textarea,
+  select,
+  option {
+    display: block;
     width: 100%;
-  }
+    padding: 5px 10px;
+    border: 1px solid #eeeeee;
+    outline: none;
 
-  table.crud {
-    font-size: 1.5rem;
+    &:focus {
+      border-color: #aaaaaa;
+    }
   }
+}
 
-  .table-container {
-    background-color: #fff;
-    padding: 15px 30px;
-  }
+[type="submit"] {
+  border: none;
+}
+
+table {
+  width: 100%;
+}
+
+table.crud {
+  font-size: 1.5rem;
+}
+
+.table-container {
+  background-color: #fff;
+  padding: 15px 30px;
+}
 </style>

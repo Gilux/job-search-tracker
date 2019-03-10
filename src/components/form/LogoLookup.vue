@@ -7,7 +7,7 @@
         id="logo_url"
         :value="value"
         @input="$emit('input', $event.target.value)"
-      >
+      />
     </div>
     <div class="logo-preview">
       <img :src="logoUrl" :alt="value" />
@@ -16,50 +16,41 @@
 </template>
 
 <script>
-
 export default {
   name: "logo-lookup",
-  props: [
-    'name',
-    'value',
-    'label'
-  ],
+  props: ["name", "value", "label"],
   data: function() {
-    return {
-      
-    };
+    return {};
   },
   computed: {
     logoUrl() {
-      return "https://logo.clearbit.com/" + this.value
+      return "https://logo.clearbit.com/" + this.value;
     }
   }
-}
-
+};
 </script>
 
 <style lang="scss">
-  .logo-lookup {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.logo-lookup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
-    .form-control {
-      flex: 1;
-      margin-right: 30px;
-    }
+  .form-control {
+    flex: 1;
+    margin-right: 30px;
   }
+}
 
-  .logo-preview {
+.logo-preview {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #ccc;
+
+  img {
     width: 80px;
     height: 80px;
-    border: 1px solid #CCC;
-    
-    img {
-      width: 80px;
-      height: 80px;
-    }
   }
-
+}
 </style>
