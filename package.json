@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@vuex-orm/core": "^0.31.6",
     "leaflet": "^1.4.0",
     "leaflet-geosearch": "^2.7.0",
     "vue": "^2.6.6",

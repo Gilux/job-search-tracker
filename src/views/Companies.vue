@@ -6,8 +6,10 @@
       
     <MainMenu />
     
-
-    <main v-if="$route.name == 'companies'">
+    <main v-if="$route.name == 'add_company'">
+      <NewCompany />
+    </main>
+    <main v-else>
       <div id="search">
 
       </div>
@@ -17,14 +19,12 @@
           <CompanyCard v-for="c in companies" :key="c.id" :model="c" />
         </div>
       </div>
-      <a href="#" @click.prevent="onNewCompany" id="add_company">
+      <a href="#" @click.prevent="onNewCompany" class="add_button">
         &plus;
       </a>
     </main>
 
-    <main v-if="$route.name == 'add_company'">
-      <NewCompany />
-    </main>
+    
 
   </section>
 </template>
@@ -35,6 +35,8 @@
   import MainMenu from "@/components/MainMenu"
   import NewCompany from "@/components/NewCompany"
 
+  import Company from "@/models/company"
+
   export default {
     name: "companies",
     data() {
@@ -43,7 +45,7 @@
       }
     },
     computed: {
-      companies() { return this.$store.get('companies@companies') }
+      companies() { return Company.query().withAll().all() }
     },
     components: {
       CompanyDetails,
@@ -67,27 +69,6 @@
   main {
     position: relative;
   }
-
-  $add_company_size: 60px;
-
-  #add_company {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-
-    width: $add_company_size;
-    height: $add_company_size;
-    line-height: $add_company_size;
-
-    text-align: center;
-
-    background-color: #352D69;
-    color: #FFFFFF;
-    font-weight: 600;
-    font-size: $add_company_size / 2;
-    border-radius: 100%;
-  }
-
   
   .fade-enter-active {
     animation: bounce-in 0.4s;

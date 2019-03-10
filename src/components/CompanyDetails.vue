@@ -3,7 +3,7 @@
     <div class="application-single__inner">
       <a href="#" class="close"><img src="@/assets/close.svg" alt="close" @click.prevent="$router.push('/companies')"></a>
       <header class="application-intro">
-          <img :src="'https://logo.clearbit.com/' + company.logo" alt="#" class="logo">
+          <img :src="'https://logo.clearbit.com/' + company.logo_url" alt="#" class="logo">
           <div class="main-infos">
             <h2>{{ company.job_name }}</h2>
             <p class="company">{{ company.company_name }}</p>
@@ -81,6 +81,8 @@
 </template>
 
 <script>
+  import Company from '@/models/company'
+  
   export default {
     name: "company_single",
     data() {
@@ -92,7 +94,7 @@
     },
     computed: {
       company() {
-        return this.$store.getters.getCompanyById(this.$route.params.id)
+        return Company.find(this.$route.params.id)
       }
     },
     methods: {
@@ -104,7 +106,10 @@
         }
       },
       savePersonalNotes() {
-        this.$store.commit("updateCompanyPersonalNotes", {id: this.company.id, newVal: this.tmpPersonalNotes})
+        Company.update({
+          where: this.company.id,
+          data: { personal_notes: this.tmpPersonalNotes }
+        })
         this.isEditingPersonalNotes = false
       },
       cancelPersonalNotes() {
@@ -112,7 +117,7 @@
         this.isEditingPersonalNotes = false
       },
       setNewStatus(status) {
-        this.$store.dispatch("updateCompanyStatus", {id: this.company.id, newVal: status})
+        this.$store.dispatch("entities/company/updateCompanyStatus", {id: this.company.id, newVal: status})
       },
     }
   };

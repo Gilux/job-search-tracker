@@ -4,7 +4,12 @@
     <form @submit.prevent="addNewCompany">
       <div class="form-control">
         <label for="name">Name:</label>
-        <input type="text" id="name" v-model="c.name">
+        <input type="text" id="name" v-model="c.job_name">
+      </div>
+
+      <div class="form-control">
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" v-model="c.company_name">
       </div>
 
       <logo-lookup v-model="c.logo_url" />
@@ -16,9 +21,9 @@
         <textarea id="personal_notes" v-model="c.personal_notes" />
       </div>
       <div class="form-control">
-        <label for="sector">Sector:</label>
-        <select id="sector" v-model="c.sector">
-
+        <label for="field">Field:</label>
+        <select id="field" v-model="c.field_id">
+          <option v-for="f in fields" :key="f.id" :value="f.id">{{ f.name }}</option>
         </select>
       </div>
       <div class="form-control">
@@ -48,16 +53,20 @@ import Rating from '@/components/form/Rating'
 import LogoLookup from '@/components/form/LogoLookup'
 import LocationGeocode from '@/components/form/LocationGeocode'
 
+import Field from '@/models/field'
+import Company from '@/models/company'
+
 export default {
   name: "add_company",
   data() {
     return {
       c: {
-        name: "",
-        logo_url: "",
-        location: "",
-        personal_notes: "",
-        sector: null,
+        job_name: "Test",
+        logo_url: "google.com",
+        company_name: "Google, Inc",
+        location: {lat:"48.8774137", lon:"2.3299286410804"},
+        personal_notes: "noice",
+        field_id: null,
         technos: [],
         salary: 0,
         ratings: {
@@ -69,7 +78,8 @@ export default {
     }
   },
   computed: {
-    companies() { return this.$store.get('companies@companies') }
+    companies() { return Company.all() },
+    fields() { return Field.all() }
   },
   components: {
     "star-rating": Rating,
@@ -78,7 +88,10 @@ export default {
   },
   methods: {
     addNewCompany() {
-      console.log(JSON.stringify(this.c))
+      Company.insert({
+        data: Object.assign({}, this.c, {history: [{id: Date.now(), date: "2019-03-10", action: "Application registered"}]})
+      })
+      this.$router.push({ name: 'companies' })
     }
   }
 };
@@ -86,35 +99,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-  .form-control {
-    margin: 10px 0;
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.2rem;
-    }
-
-    input, textarea, select, option {
-      display: block;
-      width: 100%;
-      padding: 5px 10px;
-      border: 1px solid #EEEEEE;
-      outline: none;
-
-      &:focus {
-        border-color: #AAAAAA;
-      }
-    }
-
-    
-  }
-  
-  [type="submit"] {
-    border: none;
-  }
-
   .ratings {
     display: flex;
     flex-direction: row;

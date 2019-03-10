@@ -1,10 +1,10 @@
 <template>
   <div class="application shadow">
     <header class="application-intro">
-      <img :src="'https://logo.clearbit.com/' + model.logo" class="logo" alt="#">
+      <img :src="'https://logo.clearbit.com/' + model.logo_url" class="logo" alt="#">
       <div class="main-infos">
         <h2>{{ model.job_name }}</h2>
-        <p class="company">{{ model.company_name }}</p>
+        <p class="company">{{ model.company_name }} (<i>{{ (model.field) ? model.field.name : "Inconnu" }}</i>)</p>
         <div class="status" :class="model.status">{{ model.status }}</div>
       </div>
     </header>

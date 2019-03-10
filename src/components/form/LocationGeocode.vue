@@ -36,12 +36,19 @@ export default {
   ],
   mounted() {
     this.map = new L.Map('map', {
-      center: [51.505, -0.09],
+      center: [this.value.lat, this.value.lon],
       zoom: 13
     });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+    const greenIcon = new L.Icon({
+      iconUrl: 'https://cdn2.iconfinder.com/data/icons/thick-outline-basics/128/map-pin-location-256.png',
+      iconSize: [41, 51], // size of the icon
+      iconAnchor: [20, 51], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, -51] // point from which the popup should open relative to the iconAnchor                                 
+    });
+    L.marker({lat: this.value.lat, lon: this.value.lon}, {icon: greenIcon}).addTo(this.map)
     
   },
 

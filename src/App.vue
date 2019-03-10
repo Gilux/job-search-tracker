@@ -391,4 +391,63 @@ h3 {
   width: 24px;
   height: 24px;
 }
+
+$add_button_size: 60px;
+
+.add_button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+
+  width: $add_button_size;
+  height: $add_button_size;
+  line-height: $add_button_size;
+
+  text-align: center;
+
+  background-color: #352D69;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: $add_button_size / 2;
+  border-radius: 100%;
+}
+
+.form-control {
+    margin: 10px 0;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }
+
+    input, textarea, select, option {
+      display: block;
+      width: 100%;
+      padding: 5px 10px;
+      border: 1px solid #EEEEEE;
+      outline: none;
+
+      &:focus {
+        border-color: #AAAAAA;
+      }
+    } 
+  }
+  
+  [type="submit"] {
+    border: none;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table.crud {
+    font-size: 1.5rem;
+  }
+
+  .table-container {
+    background-color: #fff;
+    padding: 15px 30px;
+  }
 </style>
