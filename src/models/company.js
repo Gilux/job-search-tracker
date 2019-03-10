@@ -2,6 +2,10 @@ import { Model } from "@vuex-orm/core";
 
 import Field from "@/models/field";
 
+import Techno from "@/models/techno";
+import CompanyTechno from "@/models/companytechno";
+
+
 export default class Company extends Model {
   // This is the name used as module name of the Vuex Store.
   static entity = "company";
@@ -17,13 +21,14 @@ export default class Company extends Model {
       location: this.attr(""),
       personal_notes: this.attr(""),
       field_id: this.attr(null),
-      technos: this.attr([]),
       salary: this.number(0),
       ratings: this.attr({ projects: 1, salary: 1, location: 1 }),
-
+      
       status: this.attr("OPEN"),
       history: this.attr([]),
-      field: this.belongsTo(Field, "field_id")
+      field: this.belongsTo(Field, "field_id"),
+      
+      technos: this.belongsToMany(Techno, CompanyTechno, "company_id", "techno_id" )
     };
   }
 }
