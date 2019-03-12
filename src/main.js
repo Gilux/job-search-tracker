@@ -10,6 +10,8 @@ import Company from "@/models/company";
 
 import companyplaceholder from "@/dev/companyplaceholder"
 
+import initFirebase from "./firebase/init"
+initFirebase()
 
 new Vue({
   router,
@@ -21,3 +23,4 @@ new Vue({
 Company.create({
   data: companyplaceholder
 })
+
