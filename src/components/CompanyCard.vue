@@ -36,8 +36,11 @@
         </li>
       
       </ul>
-      <div>
+      <div class="personal_notes">
         {{ model.personal_notes }}
+      </div>
+      <div class="technologies">
+        <span v-for="t in model.technos">{{ t }}</span>
       </div>
     </div>
     <footer>
@@ -54,6 +57,9 @@
       moreDetails(id) {
         this.$router.push('/companies/c/' + id)
       }
+    },
+    computed: {
+      
     }
   };
 </script>

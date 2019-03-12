@@ -14,7 +14,7 @@ export default class Company extends Model {
   // for the generic field type. The argument is the default value.
   static fields() {
     return {
-      id: this.increment(),
+      id: this.number(),
       job_name: this.attr(""),
       logo_url: this.attr(""),
       company_name: this.attr(""),

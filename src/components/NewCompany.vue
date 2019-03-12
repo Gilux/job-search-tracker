@@ -29,7 +29,7 @@
       <div class="form-control">
         <label for="technos">Technos:</label>
         <select multiple id="technos" v-model="c.technos">
-
+          <option v-for="t in technos" :key="t.id" :value="t.id">{{ t.name }}</option>
         </select>
       </div>
       <div class="form-control">
@@ -55,6 +55,7 @@ import LocationGeocode from '@/components/form/LocationGeocode'
 
 import Field from '@/models/field'
 import Company from '@/models/company'
+import Techno from '@/models/techno'
 
 export default {
   name: "add_company",
@@ -79,7 +80,8 @@ export default {
   },
   computed: {
     companies() { return Company.all() },
-    fields() { return Field.all() }
+    fields() { return Field.all() },
+    technos() { return Techno.all() }
   },
   components: {
     "star-rating": Rating,
@@ -89,7 +91,7 @@ export default {
   methods: {
     addNewCompany() {
       Company.insert({
-        data: Object.assign({}, this.c, {history: [{id: Date.now(), date: "2019-03-10", action: "Application registered"}]})
+        data: Object.assign({}, this.c, {id: Date.now()}, {history: [{id: Date.now(), date: "2019-03-10", action: "Application registered"}]})
       })
       this.$router.push({ name: 'companies' })
     }
