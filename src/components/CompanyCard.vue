@@ -40,7 +40,7 @@
         {{ model.personal_notes }}
       </div>
       <div class="technologies">
-        <span v-for="t in model.technos">{{ t }}</span>
+        <span v-for="t in model.technos" :key="t.id">{{ t.name }}</span>
       </div>
     </div>
     <footer>
@@ -59,12 +59,31 @@
       }
     },
     computed: {
-      
+
     }
   };
 </script>
 
 
-<style>
+<style lang="scss">
+  .personal_notes {
+    padding: 15px 30px;
+  }
+  
+  .technologies {
+    padding: 15px 30px;
 
+    span {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ddd;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+  }
 </style>
