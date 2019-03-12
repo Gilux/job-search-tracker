@@ -1,4 +1,5 @@
 import Vue from "vue";
+import firebase from "firebase";
 
 Vue.config.productionTip = false;
 
@@ -12,6 +13,8 @@ import companyplaceholder from "@/dev/companyplaceholder"
 
 import initFirebase from "./firebase/init"
 initFirebase()
+
+firebase.auth().languageCode = "fr";
 
 new Vue({
   router,

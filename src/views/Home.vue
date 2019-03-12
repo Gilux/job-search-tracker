@@ -20,6 +20,7 @@
           </div>
           <div class="google">
             <h2>With a Google account</h2>
+            <a href="#" @click.prevent="onGoogleLogin()">here</a>
           </div>
           
         </div>
@@ -29,9 +30,41 @@
 </template>
 
 <script>
+import firebase from "firebase"
+import GoogleProvider from "@/firebase/GoogleProvider"
 
 export default {
   name: "home",
+  methods: {
+    onGoogleLogin() {
+      firebase.auth().signInWithPopup(GoogleProvider).then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+
+        this.$store.dispatch("userLogin", user)
+
+        this.redirect()
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+
+        console.error(errorCode, errorMessage, email, credential)
+      });
+    },
+
+    redirect() {
+      this.$router.push({name: "companies"})
+    }
+  }
 
 };
 </script>
