@@ -19,23 +19,9 @@ const companyplaceholder = [
     ],
     personal_notes: "lorem ipsum",
     location: {lat: -10.000, lng: 10.000},
-    field: {
-      id: 4,
-      name: "Gaming"
-    },
-    // field_id: 4,
-    technos: [
-      {
-        id: 1,
-        name: "VueJS",
-        logo_url: "#"
-      },
-      {
-        id: 2,
-        name: "React",
-        logo_url: "#"
-      }
-    ]
+    // field: {},
+    field_id: 4,
+    technos: [1,2]
   },
   {
     id: 2,
@@ -62,23 +48,8 @@ const companyplaceholder = [
     ],
     personal_notes: "lorem ipsum",
     location: { lat: -10.000, lng: 10.000 },
-    // field_id: 3,
-    field: {
-      id: 4,
-      name: "Gaming"
-    },
-    technos: [
-      {
-        id: 2,
-        name: "React",
-        logo_url: "#"
-      },
-      {
-        id: 3,
-        name: "CakePHP",
-        logo_url: "#"
-      }
-    ]
+    field_id: 3,
+    technos: [2,3]
   }
 ];
 
