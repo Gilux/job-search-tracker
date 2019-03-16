@@ -59,7 +59,7 @@
       <div class="personal_notes">
         {{ model.personal_notes }}
       </div>
-      <div class="technos">
+      <div class="technologies">
         <span v-for="t in model.technos" :key="t.id">{{ t.name }}</span>
       </div>
     </div>
@@ -72,39 +72,40 @@
 </template>
 
 <script>
-export default {
-  name: "company_card",
-  props: ["model"],
-  methods: {
-    moreDetails(id) {
-      this.$router.push("/companies/c/" + id);
+  export default {
+    name: "company_card",
+    props: ["model"],
+    methods: {
+      moreDetails(id) {
+        this.$router.push('/companies/c/' + id)
+      }
+    },
+    computed: {
+
     }
   }
-};
 </script>
 
 <style lang="scss" scoped>
-.technos,
-.personal_notes {
-  padding: 15px 30px;
-}
-
-.technos {
-  span {
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 10px;
-    padding: 3px 10px;
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    color: #666;
-    margin-right: 10px;
-    margin-bottom: 5px;
+  .technos,
+  .personal_notes {
+    padding: 15px 30px;
   }
+  
+  .technologies {
+    padding: 15px 30px;
 
-  &:empty {
-    padding: 0;
+    span {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ddd;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
   }
-}
 </style>

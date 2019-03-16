@@ -18,12 +18,10 @@ const companyplaceholder = [
       }
     ],
     personal_notes: "lorem ipsum",
-    location: {
-      lat: "48.8774137",
-      lon: "2.3299286410804"
-    },
+    location: {lat: -10.000, lng: 10.000},
+    // field: {},
     field_id: 4,
-    technos: [2, 3]
+    technos: [1,2]
   },
   {
     id: 2,
@@ -49,12 +47,9 @@ const companyplaceholder = [
       }
     ],
     personal_notes: "lorem ipsum",
-    location: {
-      lat: "48.8774137",
-      lon: "2.3299286410804"
-    },
+    location: { lat: -10.000, lng: 10.000 },
     field_id: 3,
-    field: {}
+    technos: [2,3]
   }
 ];
 

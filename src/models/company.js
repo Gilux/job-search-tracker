@@ -25,14 +25,9 @@ export default class Company extends Model {
 
       status: this.attr("OPEN"),
       history: this.attr([]),
-      field: this.belongsTo(Field, "field_id"),
 
-      technos: this.belongsToMany(
-        Techno,
-        CompanyTechno,
-        "company_id",
-        "techno_id"
-      )
+      field: this.belongsTo(Field, "field_id"),
+      technos: this.belongsToMany(Techno, CompanyTechno, "company_id", "techno_id" )
     };
   }
 }

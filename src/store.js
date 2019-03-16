@@ -3,14 +3,15 @@ import Vuex from "vuex";
 // import pathify from 'vuex-pathify'
 import VuexORM from "@vuex-orm/core";
 
-import Field from "@/models/field";
-import Company from "@/models/company";
-import Techno from "@/models/techno";
-
-import companiesModule from "@/store_modules/companies";
-import fieldsModule from "@/store_modules/fields";
-import technosModule from "@/store_modules/fields";
+import Field from '@/models/field'
+import Company from '@/models/company'
+import Techno from '@/models/techno'
 import CompanyTechno from "./models/companytechno";
+
+import companiesModule from '@/store_modules/companies'
+import fieldsModule from '@/store_modules/fields'
+import technosModule from '@/store_modules/fields'
+import usersModule from '@/store_modules/users'
 
 Vue.use(Vuex);
 
@@ -27,5 +28,7 @@ database.register(CompanyTechno, {});
 export default new Vuex.Store({
   // plugins: [ pathify.plugin, VuexORM.install(database) ],
   plugins: [VuexORM.install(database)],
-  modules: {}
+  modules: {
+    user: usersModule
+  }
 });

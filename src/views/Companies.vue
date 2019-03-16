@@ -23,9 +23,6 @@
         &plus;
       </a>
     </main>
-
-    
-
   </section>
 </template>
 

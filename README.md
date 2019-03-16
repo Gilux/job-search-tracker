@@ -1,34 +1,10 @@
-# companies
+# Job Search Tracker
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+A little tool made with VueJS (vue-cli), using :
+- vuex
+- vuex-orm
+- vue-router
+- Leaflet integration
+- OSM Maps & Nominatim (Geocoding) integration
+- ESLint Prettier Config
+- Firebase integration (user accounts & data storage)
