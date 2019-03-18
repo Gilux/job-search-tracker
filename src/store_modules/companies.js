@@ -5,7 +5,12 @@ import firebase from "firebase"
 const companiesModule = {
   state: {},
   getters: {},
-  mutations: {},
+  mutations: {
+    resetState (state) {
+      console.log(state.data)
+      state.data = Object.assign({})
+    }
+  },
   actions: {
     // Updates an application status, and add an entry to the "history" array
     updateCompanyStatus(context, payload) {

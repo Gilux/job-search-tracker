@@ -1,16 +1,16 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }" class="logo">My Job Search</router-link>
+    <router-link :to="{ name: 'home' }" class="logo">My Job Search </router-link>
     <ul>
       <li>
         <router-link :to="{ name: 'companies' }">My Applications</router-link>
       </li>
 
-      <li>
+      <li v-if="isAdmin">
         <router-link :to="{ name: 'fields' }">Industry Fields</router-link>
       </li>
 
-      <li>
+      <li v-if="isAdmin">
         <router-link :to="{ name: 'technologies' }">Technologies</router-link>
       </li>
 
@@ -23,11 +23,18 @@
 
 <script>
   import firebase from "firebase"
+  import Company from "@/models/company"
 
   export default {
     name: "mainmenu",
+    computed: {
+      isAdmin() {
+        return this.$store.state.user.isAdmin
+      }
+    },
     methods: {
       onLogout() {
+        Company.deleteAll()
         firebase.auth().signOut()
         .then(() => {
           this.$router.push({name: "home"})

@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   // If the user is not an admin
   if (!store.state.user.isAdmin && to.meta.admin) {
     console.error("not admin");
-    return router.push({ name: "home" });
+    return;
   }
 
   return next();

@@ -12,7 +12,7 @@ const usersModule = {
       } else {
         return null;
       }
-    }
+    },
   },
   mutations: {
     userLogin(state, payload) {
@@ -21,7 +21,7 @@ const usersModule = {
     },
 
     userAdmin(state, payload) {
-      state.isAdmin = payload;
+      state.isAdmin = payload.isAdmin
     }
   },
   actions: {
@@ -35,10 +35,7 @@ const usersModule = {
           .once("value")
           .then(function(snapshot) {
             const data = snapshot.val();
-            console.log(data);
-
             var companies = [];
-
             if (typeof data === "object") {
               Object.keys(data).forEach(k => {
                 companies.push(data[k]);
@@ -55,12 +52,11 @@ const usersModule = {
                 data: a
               });
             });
-            console.log(companies);
           });
 
         firebase
           .database()
-          .ref("/users/" + payload.uid + "/data/isAdmin")
+          .ref("/users/" + payload.uid + "/data")
           .once("value")
           .then(function(snapshot) {
             context.commit("userAdmin", snapshot.val());
