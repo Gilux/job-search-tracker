@@ -1,4 +1,6 @@
 import Company from "@/models/company";
+import SaveApplications from "@/firebase/SaveApplications";
+import firebase from "firebase"
 
 const companiesModule = {
   state: {},
@@ -24,6 +26,15 @@ const companiesModule = {
           status: payload.newVal
         }
       });
+
+      context.dispatch("saveApplications");
+    },
+    // Save all applications to firebase
+    saveApplications(context) {
+      const user = firebase.auth().currentUser
+      if(user) {
+        SaveApplications(user.uid,Object.assign({}, context.state.data))
+      }
     }
   }
 };

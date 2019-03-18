@@ -21,7 +21,6 @@ const usersModule = {
     },
 
     userAdmin(state, payload) {
-      console.log(payload)
       state.isAdmin = payload;
     }
   },

@@ -31,13 +31,7 @@
       <div class="form-control">
         <label for="technos">Technos:</label>
         <select multiple id="technos" v-model="c.technos">
-<<<<<<< HEAD
-          <option v-for="t in technos" :value="t.id" :key="t.id">{{
-            t.name
-          }}</option>
-=======
           <option v-for="t in technos" :key="t.id" :value="t.id">{{ t.name }}</option>
->>>>>>> 007d858590e4ddf30538901b11d6b0c30b9efb99
         </select>
       </div>
       <div class="form-control">
@@ -113,6 +107,7 @@ export default {
       Company.insert({
         data: Object.assign({}, this.c, {id: Date.now()}, {history: [{id: Date.now(), date: "2019-03-10", action: "Application registered"}]})
       })
+      this.$store.dispatch("entities/company/saveApplications");
       this.$router.push({ name: 'companies' })
     }
   }

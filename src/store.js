@@ -3,15 +3,15 @@ import Vuex from "vuex";
 // import pathify from 'vuex-pathify'
 import VuexORM from "@vuex-orm/core";
 
-import Field from '@/models/field'
-import Company from '@/models/company'
-import Techno from '@/models/techno'
+import Field from "@/models/field";
+import Company from "@/models/company";
+import Techno from "@/models/techno";
 import CompanyTechno from "./models/companytechno";
 
-import companiesModule from '@/store_modules/companies'
-import fieldsModule from '@/store_modules/fields'
-import technosModule from '@/store_modules/fields'
-import usersModule from '@/store_modules/users'
+import companiesModule from "@/store_modules/companies";
+import fieldsModule from "@/store_modules/fields";
+import technosModule from "@/store_modules/fields";
+import usersModule from "@/store_modules/users";
 
 Vue.use(Vuex);
 

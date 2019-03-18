@@ -66,8 +66,6 @@ router.beforeEach((to, from, next) => {
   // Proceed if no auth is required
   if (!to.meta.requiresAuth || to.meta.requiresAuth == false) return next();
 
-  console.log(store.state.user.userLogged);
-
   // Otherwise, check if the user is logged in, redirect to login page if not
   if (!store.state.user.userLogged) {
     console.error(from.path, "not logged");
