@@ -8,9 +8,9 @@ const usersModule = {
     getCurrentUserId(state) {
       var user = firebase.auth().currentUser;
       if (user) {
-        return user.uid
+        return user.uid;
       } else {
-        return null
+        return null;
       }
     }
   },
@@ -34,31 +34,30 @@ const usersModule = {
           .ref("/users/" + payload.uid + "/applications")
           .once("value")
           .then(function(snapshot) {
-            const data = snapshot.val()
-            console.log(data)
-            
-            var companies = []
+            const data = snapshot.val();
+            console.log(data);
 
-            if(typeof data === "object") {
+            var companies = [];
+
+            if (typeof data === "object") {
               Object.keys(data).forEach(k => {
-                companies.push(data[k])
-              })
-            }
-            else {
+                companies.push(data[k]);
+              });
+            } else {
               companies = data.filter(c => {
                 if (c) return true;
                 return false;
               });
             }
-            
+
             companies.forEach(a => {
               Company.insert({
                 data: a
               });
             });
-            console.log(companies)
+            console.log(companies);
           });
-          
+
         firebase
           .database()
           .ref("/users/" + payload.uid + "/data/isAdmin")

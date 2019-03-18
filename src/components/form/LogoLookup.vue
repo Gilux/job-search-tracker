@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "logo-lookup",
-  props: ["name", "value", "label"],
+  props: ["value"],
   data: function() {
     return {};
   },

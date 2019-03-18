@@ -7,14 +7,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import Company from "@/models/company";
 import Techno from "@/models/techno";
 import Field from "@/models/field";
 
-import companyplaceholder from "@/dev/companyplaceholder"
-
-import initFirebase from "./firebase/init"
-initFirebase()
+import initFirebase from "./firebase/init";
+initFirebase();
 
 firebase.auth().languageCode = "fr";
 
@@ -24,19 +21,18 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-
 // Let's fill the store with Field and Techno values (common to all users, so no need to wait for login !)
 firebase
   .database()
-  .ref('/fields')
-  .once('value')
-  .then(function (snapshot) {
+  .ref("/fields")
+  .once("value")
+  .then(function(snapshot) {
     snapshot.val().forEach(f => {
       Field.insert({
         data: f
-      })
-    })
-  })
+      });
+    });
+  });
 
 firebase
   .database()
@@ -50,16 +46,15 @@ firebase
     });
   });
 
-  firebase.auth().onAuthStateChanged(user => {
-    if(user) {  
-      store.dispatch("userLogin", user).then(response => {
-        router.push({name: "companies"})
-      })
-    }
-  })
-  
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    store.dispatch("userLogin", user).then(response => {
+      router.push({ name: "companies" });
+    });
+  }
+});
+
 // Fill the store with initial data
 // Company.create({
 //   data: companyplaceholder
 // })
-

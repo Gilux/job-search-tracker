@@ -4,40 +4,38 @@ import firebase from "firebase";
 function writeBaseUserData(userId) {
   return new Promise((resolve, reject) => {
     firebase
-    .database()
-    .ref("users/" + userId)
-    .set({
-      applications: [],
-      data: {
-        admin: false
-      }
-    })
-    .then((d) => {
-      resolve()
-    })
-    .catch(err => {
-      reject(err)
-    })
-  })
+      .database()
+      .ref("users/" + userId)
+      .set({
+        applications: [],
+        data: {
+          admin: false
+        }
+      })
+      .then(d => {
+        resolve(d);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 }
 
 // Creates the user
 export default function createUser(email, password) {
   return new Promise((resolve, reject) => {
-    console.log(firebase)
+    console.log(firebase);
     firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(function(userRecord) {
-      console.log("creating user.............................", userRecord)
-      writeBaseUserData(userRecord.user.uid)
-      .then(() => {
-        resolve()
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(function(userRecord) {
+        writeBaseUserData(userRecord.user.uid).then(() => {
+          resolve();
+        });
       })
-    })
-    .catch(function(error) {
-      console.error("Error creating new user:", error);
-      reject()
-    });
-  })
+      .catch(function(error) {
+        console.error("Error creating new user:", error);
+        reject();
+      });
+  });
 }
