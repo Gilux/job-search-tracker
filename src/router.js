@@ -1,15 +1,20 @@
 import Vue from "vue";
-import Router from "vue-router";
+import VueRouter from "vue-router";
 import Home from "./views/Home.vue";
 
-Vue.use(Router);
+import store from './store';
 
-export default new Router({
+Vue.use(VueRouter);
+
+const router =  new VueRouter({
   routes: [
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: "/companies",
@@ -29,19 +34,49 @@ export default new Router({
           component: () =>
             import(/* webpackChunkName: "about" */ "./views/Companies.vue")
         }
-      ]
+      ],
+      meta: {
+        requiresAuth: true,
+      }
     },
     {
       path: "/technologies",
       name: "technologies",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Technologies.vue")
+        import(/* webpackChunkName: "about" */ "./views/Technologies.vue"),
+      meta: {
+        requiresAuth: true,
+        admin: true
+      }
     },
     {
       path: "/fields",
       name: "fields",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Fields.vue")
+        import(/* webpackChunkName: "about" */ "./views/Fields.vue"),
+      meta: {
+        requiresAuth: true,
+        admin: true
+      }
     }
   ]
-});
+})
+
+router.beforeEach((to, from, next) => {
+  // Proceed if no auth is required
+  if(!to.meta.requiresAuth) next()
+
+  // Otherwise, check if the user is logged in, redirect to login page if not
+  if(!store.state.user.userLogged) {
+      return router.push({name: "home"})
+  }
+
+  // If the user is not an admin
+  if(!store.state.user.data.isAdmin) {
+    return router.push({name: "home"})
+  }
+
+  next()
+})
+
+export default router;
