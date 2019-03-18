@@ -59,12 +59,12 @@ export default {
   data() {
     return {
       login: {
-        email: "gilux76@live.fr",
-        password: "topkeklive@11",
+        email: "",
+        password: "",
       },
       register: {
-        email: "gilux76@live.fr",
-        password: "topkeklive@11",
+        email: "",
+        password: "",
       }
     }
   },
