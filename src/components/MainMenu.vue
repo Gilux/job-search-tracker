@@ -13,23 +13,34 @@
       <li>
         <router-link :to="{ name: 'technologies' }">Technologies</router-link>
       </li>
+
+      <li>
+        <a href="#" @click.prevent="onLogout">Log out</a>
+      </li>
     </ul>
   </nav>
 </template>
 
+<script>
+  import firebase from "firebase"
+
+  export default {
+    name: "mainmenu",
+    methods: {
+      onLogout() {
+        firebase.auth().signOut()
+        .then(() => {
+          this.$router.push({name: "home"})
+        })
+        .catch((error) => {
+          console.error(error)
+        });
+      },
+    }
+  };
+
+</script>
+
 <style>
-  .router-link-exact-active {
-    color: rgb(186, 153, 228);
-    font-weight: 600;
-  }
 
-  .logo {
-    display: inline-block;
-    width: 100%;
-    font-size: 1.7rem;
-    text-align: center;
-
-    margin-bottom: 30px;
-    border-bottom: none;
-  }
 </style>

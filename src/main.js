@@ -50,6 +50,13 @@ firebase
     });
   });
 
+  firebase.auth().onAuthStateChanged(user => {
+    if(user) {  
+      store.dispatch("userLogin", user).then(response => {
+        router.push({name: "companies"})
+      })
+    }
+  })
   
 // Fill the store with initial data
 // Company.create({

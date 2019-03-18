@@ -2,11 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "./views/Home.vue";
 
-import store from './store';
+import store from "./store";
 
 Vue.use(VueRouter);
 
-const router =  new VueRouter({
+const router = new VueRouter({
   routes: [
     {
       path: "/",
@@ -36,7 +36,7 @@ const router =  new VueRouter({
         }
       ],
       meta: {
-        requiresAuth: true,
+        requiresAuth: true
       }
     },
     {
@@ -60,23 +60,27 @@ const router =  new VueRouter({
       }
     }
   ]
-})
+});
 
 router.beforeEach((to, from, next) => {
   // Proceed if no auth is required
-  if(!to.meta.requiresAuth) next()
+  if (!to.meta.requiresAuth || to.meta.requiresAuth == false) return next();
+
+  console.log(store.state.user.userLogged);
 
   // Otherwise, check if the user is logged in, redirect to login page if not
-  if(!store.state.user.userLogged) {
-      return router.push({name: "home"})
+  if (!store.state.user.userLogged) {
+    console.error(from.path, "not logged");
+    return router.push({ name: "home" });
   }
 
   // If the user is not an admin
-  if(!store.state.user.data.isAdmin) {
-    return router.push({name: "home"})
+  if (!store.state.user.isAdmin && to.meta.admin) {
+    console.error("not admin");
+    return router.push({ name: "home" });
   }
 
-  next()
-})
+  return next();
+});
 
 export default router;
