@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
-export default function SaveApplications(userId, payload) {
-  // We must remove the "$id" from vuex-orm, because Firebase doesn't support "$" in key names.
-  Object.keys(payload).forEach(k => {
-    delete payload[k].$id;
-  });
+import Company from "@/models/company";
+
+export default function SaveApplications(userId) {
+  const companies = Company.query().withAll().all()
+  let data = companies.map(c => c.$toJson())
   firebase
     .database()
     .ref("users/" + userId + "/applications")
-    .set(payload);
+    .set(data);
 }
