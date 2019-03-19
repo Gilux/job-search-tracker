@@ -77,10 +77,13 @@
             name: this.create.name
           }
         })
-        this.showCreateForm = false
+        this.showCreateForm = false // Hide the form (show the list)
+        this.create.name = "" // Reset the form input
+        this.$store.dispatch("entities/field/saveFields");
       },
       onDelete( id ) {
         Field.delete( id )
+        this.$store.dispatch("entities/field/saveFields");
       }
     }
   };

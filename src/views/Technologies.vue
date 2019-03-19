@@ -85,10 +85,12 @@
             logo_url: this.create.logo_url
           }
         })
+        this.$store.dispatch("entities/techno/saveTechnos");
         this.showCreateForm = false
       },
       onDelete( id ) {
         Techno.delete( id )
+        this.$store.dispatch("entities/techno/saveTechnos");
       }
     }
   };

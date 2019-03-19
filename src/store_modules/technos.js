@@ -1,9 +1,15 @@
+import SaveTechnos from '@/firebase/SaveTechnos'
+
 const technosModule = {
   state: {},
   getters: {},
   mutations: {},
 
-  actions: {}
+  actions: {
+    saveTechnos: (context) => {
+      SaveTechnos(Object.assign({}, context.state.data))
+    }
+  }
 };
 
 export default technosModule;

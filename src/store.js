@@ -10,7 +10,7 @@ import CompanyTechno from "./models/companytechno";
 
 import companiesModule from "@/store_modules/companies";
 import fieldsModule from "@/store_modules/fields";
-import technosModule from "@/store_modules/fields";
+import technosModule from "@/store_modules/technos";
 import usersModule from "@/store_modules/users";
 
 Vue.use(Vuex);

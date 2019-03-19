@@ -20,7 +20,7 @@ const companiesModule = {
       const options = { year: "numeric", month: "2-digit", day: "2-digit" };
       history.unshift({
         id: Date.now(),
-        date: d.toLocaleDateString("fr-FR", options),
+        date: d.toLocaleDateString("en-US", options),
         action: "Switched status to " + payload.newVal
       });
 
@@ -38,7 +38,7 @@ const companiesModule = {
     saveApplications(context) {
       const user = firebase.auth().currentUser
       if(user) {
-        SaveApplications(user.uid,Object.assign({}, context.state.data))
+        SaveApplications(user.uid)
       }
     }
   }

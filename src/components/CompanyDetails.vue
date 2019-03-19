@@ -201,6 +201,7 @@ export default {
         data: { personal_notes: this.tmpPersonalNotes }
       });
       this.isEditingPersonalNotes = false;
+      this.$store.dispatch("entities/company/saveApplications");
     },
     cancelPersonalNotes() {
       this.tmpPersonalNotes = "";
