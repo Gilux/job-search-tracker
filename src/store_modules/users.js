@@ -22,6 +22,12 @@ const usersModule = {
 
     userAdmin(state, payload) {
       state.isAdmin = payload.isAdmin
+    },
+
+    resetUserState(state) {
+      state.user = {}
+      state.isAdmin = false
+      state.userLogged = false
     }
   },
   actions: {
@@ -64,6 +70,9 @@ const usersModule = {
           });
       });
     }
+  },
+  resetUserState(context) {
+    context.commit("resetUserState")
   }
 };
 

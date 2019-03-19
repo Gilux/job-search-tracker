@@ -6,11 +6,11 @@
         <router-link :to="{ name: 'companies' }">My Applications</router-link>
       </li>
 
-      <li v-if="isAdmin">
+      <li v-if="isAdmin === true">
         <router-link :to="{ name: 'fields' }">Industry Fields</router-link>
       </li>
 
-      <li v-if="isAdmin">
+      <li v-if="isAdmin === true">
         <router-link :to="{ name: 'technologies' }">Technologies</router-link>
       </li>
 
@@ -37,6 +37,7 @@
         Company.deleteAll()
         firebase.auth().signOut()
         .then(() => {
+          this.$store.users.dispatch("resetUserState")
           this.$router.push({name: "home"})
         })
         .catch((error) => {
