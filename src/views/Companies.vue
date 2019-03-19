@@ -38,6 +38,8 @@
 
   import Company from "@/models/company"
 
+  import Fuse from 'fuse.js'
+
   export default {
     name: "companies",
     data() {
@@ -64,20 +66,15 @@
       },
 
       onNameSearch() {
-        const results = Company.query()
-          .withAll()
-          .search(this.search.name, {
-            caseSensitive: false,
-            threshold: 0.3,
-            keys: ['company_name','job_name', 'technos.name']
-          })
-          .orderBy('firstName', 'asc')
-          .offset(0)
-          .limit(10)
-          .get()
-        this.results = results.slice(0)
+        const c = this.companies.slice(0)
+        console.log(c)
+        var fuse = new Fuse(c, {
+          keys: ['company_name', 'technos.name'],
+        })
 
-        console.log(this.results)
+        this.results = fuse.search(this.search.name).slice(0)
+
+        console.log(fuse.search(this.search.name))
       }
     }
   };
