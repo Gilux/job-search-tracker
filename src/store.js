@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 // import pathify from 'vuex-pathify'
 import VuexORM from "@vuex-orm/core";
+import VuexORMSearch from '@vuex-orm/plugin-search'
 
 import Field from "@/models/field";
 import Company from "@/models/company";
@@ -14,6 +15,10 @@ import technosModule from "@/store_modules/technos";
 import usersModule from "@/store_modules/users";
 
 Vue.use(Vuex);
+
+VuexORM.use(VuexORMSearch, {
+  // configure default fuse.js options here (see below)
+})
 
 // Create new instance of Database.
 const database = new VuexORM.Database();

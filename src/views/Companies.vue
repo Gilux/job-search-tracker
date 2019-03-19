@@ -15,8 +15,12 @@
       </div>
       <div class="applications">
         <h1>My Applications</h1>
+        <div class="search">
+          <h2>Filter results</h2>
+          <input type="text" v-model="search.name" @input.prevent="onNameSearch">
+        </div>
         <div class="applications__list">
-          <CompanyCard v-for="c in companies" :key="c.id" :model="c" />
+          <CompanyCard v-for="c in results" :key="c.id" :model="c" />
         </div>
       </div>
       <a href="#" @click.prevent="onNewCompany" class="add_button">
@@ -38,7 +42,11 @@
     name: "companies",
     data() {
       return {
-        show: false
+        show: false,
+        search: {
+          name: ""
+        },
+        results: []
       }
     },
     computed: {
@@ -53,6 +61,23 @@
     methods: {
       onNewCompany() {
         this.$router.push({ name: 'add_company' })
+      },
+
+      onNameSearch() {
+        const results = Company.query()
+          .withAll()
+          .search(this.search.name, {
+            caseSensitive: false,
+            threshold: 0.3,
+            keys: ['company_name','job_name', 'technos.name']
+          })
+          .orderBy('firstName', 'asc')
+          .offset(0)
+          .limit(10)
+          .get()
+        this.results = results.slice(0)
+
+        console.log(this.results)
       }
     }
   };
@@ -83,6 +108,16 @@
     }
     100% {
       right: 0;
+    }
+  }
+
+  .search {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 30px;
+
+    h2 {
+      margin-bottom: 15px;
     }
   }
 
