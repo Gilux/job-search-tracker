@@ -22,10 +22,11 @@
         <div class="applications__list">
           <CompanyCard v-for="c in results" :key="c.id" :model="c" />
         </div>
+        <a href="#" @click.prevent="onNewCompany" class="add_button">
+          &plus;
+        </a>
       </div>
-      <a href="#" @click.prevent="onNewCompany" class="add_button">
-        &plus;
-      </a>
+      
     </main>
   </section>
 </template>
@@ -53,6 +54,7 @@
     },
     mounted() {
       this.companies = Company.query().withAll().all()
+      this.onNameSearch()
     },
     components: {
       CompanyDetails,
@@ -95,7 +97,6 @@
   .fade-leave-active {
     animation: bounce-in 0.4s reverse;
   }
-
 
 
   @keyframes bounce-in {
