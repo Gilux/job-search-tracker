@@ -51,8 +51,8 @@
         results: []
       }
     },
-    computed: {
-      companies() { return Company.query().withAll().all() }
+    mounted() {
+      this.companies = Company.query().withAll().all()
     },
     components: {
       CompanyDetails,
@@ -67,14 +67,13 @@
 
       onNameSearch() {
         const c = this.companies.slice(0)
-        console.log(c)
+        if(this.search.name === "") {
+          return this.results = c
+        }
         var fuse = new Fuse(c, {
           keys: ['company_name', 'technos.name'],
         })
-
-        this.results = fuse.search(this.search.name).slice(0)
-
-        console.log(fuse.search(this.search.name))
+        return this.results = fuse.search(this.search.name).slice(0)
       }
     }
   };
