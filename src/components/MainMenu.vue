@@ -37,7 +37,7 @@
         Company.deleteAll()
         firebase.auth().signOut()
         .then(() => {
-          this.$store.users.dispatch("resetUserState")
+          this.$store.dispatch("resetUserState")
           this.$router.push({name: "home"})
         })
         .catch((error) => {

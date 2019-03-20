@@ -69,11 +69,12 @@ const usersModule = {
             resolve(true);
           });
       });
+    },
+    resetUserState(context) {
+      context.commit("resetUserState")
     }
   },
-  resetUserState(context) {
-    context.commit("resetUserState")
-  }
+  
 };
 
 export default usersModule;
