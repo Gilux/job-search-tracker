@@ -49,6 +49,10 @@
 
 </script>
 
-<style>
-
+<style lang="scss">
+  .logo {
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+  }
 </style>
