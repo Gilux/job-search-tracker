@@ -18,8 +18,8 @@
             <tbody>
               <tr v-for="m in model" :key="m.id">
                 <td>{{ m.id }}</td>
-                <td>{{ m.logo_url }} {{ m.name }}</td>
-                <td>{{ m.companies }}</td>
+                <td>{{ m.name }}</td>
+                <td><img :src="m.logo_url" v-if="m.logo_url != ''" class="logo"></td>
                 <td>Edit | <a href="#" @click.prevent="onDelete(m.id)">Delete</a></td>
               </tr>
             </tbody>
@@ -33,15 +33,17 @@
     <main v-else>
       <div class="fields">
         <h1>Add a techno</h1>
-        <form action="#" @submit.prevent="onCreateFormSubmit($event)">
+        <form action="#" @submit.prevent="onCreateFormSubmit($event)" enctype="multipart/form-data">
           <div class="form-control">
             <label for="name">Name: </label>
             <input type="text" name="name" id="name" v-model="create.name">
           </div>
           <div class="form-control">
             <label for="logo_url">Logo URL: </label>
-            <input type="text" name="logo_url" id="logo_url" v-model="create.logo_url">
+            <input type="file" name="logo_url" id="logo_url" @input="onFileSelect($event)">
           </div>
+          <input type="hidden" v-model="create.logo_url">
+          <img :src="create.logo_url" v-if="create.logo_url != ''" alt="logo URL">
           <input type="submit" class="btn darknavy" value="Submit">
         </form>
       </div>
@@ -50,6 +52,8 @@
 </template>
 
 <script>
+  import firebase from "firebase"
+
   import CompanyDetails from "@/components/CompanyDetails"
   import CompanyCard from "@/components/CompanyCard"
   import MainMenu from "@/components/MainMenu"
@@ -91,11 +95,31 @@
       onDelete( id ) {
         Techno.delete( id )
         this.$store.dispatch("entities/techno/saveTechnos");
+      },
+      onFileSelect( ev ) {
+        const file  = ev.target.files[0]
+
+        var storageRef = firebase.storage().ref()
+        storageRef = storageRef.child('technos_logos/' + file.name)
+
+        storageRef.put(file)
+        .then((snapshot) => {
+          storageRef.getDownloadURL()
+          .then((url) => {
+            // Or inserted into an <img> element:
+            this.create.logo_url = url;
+          })
+        .catch((error) => {
+          // Handle any errors
+        });
+      })
       }
     }
   };
 </script>
 
-<style>
-  
+<style scoped lang="scss">
+  .technos .logo {
+    width: 24px;
+  }
 </style>
