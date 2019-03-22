@@ -15,6 +15,7 @@
     "fuse.js": "^3.4.4",
     "leaflet": "^1.4.0",
     "leaflet-geosearch": "^2.7.0",
+    "register-service-worker": "^1.6.2",
     "vue": "^2.6.6",
     "vue-dynamic-star-rating": "^1.0.7",
     "vue-router": "^3.0.1",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-pwa": "^3.5.1",
     "@vue/cli-plugin-unit-jest": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-prettier": "^4.0.1",

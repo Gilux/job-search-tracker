@@ -11,6 +11,7 @@ import Techno from "@/models/techno";
 import Field from "@/models/field";
 
 import initFirebase from "./firebase/init";
+import './registerServiceWorker'
 initFirebase();
 
 firebase.auth().languageCode = "fr";
